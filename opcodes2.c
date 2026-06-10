@@ -194,3 +194,35 @@ void sub(stack_t **stack, unsigned int line_number)
 
     free(temp);
 }
+
+/**
+ * mod_op - computes the rest of the division of the second top by top element
+ * @stack: stack
+ * @line_number: line number
+ */
+void mod_op(stack_t **stack, unsigned int line_number)
+{
+    int result;
+    stack_t *temp;
+
+    if (*stack == NULL || (*stack)->next == NULL)
+    {
+        fprintf(stderr, "L%u: can't mod, stack too short\n", line_number);
+        exit(EXIT_FAILURE);
+    }
+
+    if ((*stack)->n == 0)
+    {
+        fprintf(stderr, "L%u: division by zero\n", line_number);
+        exit(EXIT_FAILURE);
+    }
+
+    result = (*stack)->next->n % (*stack)->n;
+
+    temp = *stack;
+    *stack = (*stack)->next;
+    (*stack)->prev = NULL;
+    (*stack)->n = result;
+
+    free(temp);
+}
