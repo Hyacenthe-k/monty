@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
 	char line[1024];
 	unsigned int line_number = 0;
 	char *opcode;
+	stack_t *stack = NULL;
 
 	if (argc != 2)
 	{
@@ -41,10 +42,12 @@ int main(int argc, char *argv[])
 
 		argument = strtok(NULL, " \n\t");
 
-		execute_opcode(opcode, NULL, line_number);
+		execute_opcode(opcode, &stack, line_number);
 	}
 
 	fclose(file);
+
+	free_stack(stack);
 
 	return (0);
 }
