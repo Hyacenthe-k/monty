@@ -168,3 +168,29 @@ void mul(stack_t **stack, unsigned int line_number)
 
         free(temp);
 }
+
+/**
+ * sub - subtracts the top element from the second top element
+ * @stack: stack
+ * @line_number: line number
+ */
+void sub(stack_t **stack, unsigned int line_number)
+{
+    int result;
+    stack_t *temp;
+
+    if (*stack == NULL || (*stack)->next == NULL)
+    {
+        fprintf(stderr, "L%u: can't sub, stack too short\n", line_number);
+        exit(EXIT_FAILURE);
+    }
+
+    result = (*stack)->next->n - (*stack)->n;
+
+    temp = *stack;
+    *stack = (*stack)->next;
+    (*stack)->prev = NULL;
+    (*stack)->n = result;
+
+    free(temp);
+}
