@@ -1,6 +1,7 @@
 #include "monty.h"
 
 char *argument = NULL;
+int mode = 0;
 
 /**
  * main - entry point

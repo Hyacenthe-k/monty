@@ -44,15 +44,40 @@ void push(stack_t **stack, unsigned int line_number)
 	}
 
 	new_node->n = value;
-	new_node->prev = NULL;
-	new_node->next = *stack;
 
-	if (*stack)
-		(*stack)->prev = new_node;
+if (mode == 0)
+{
+        new_node->prev = NULL;
+        new_node->next = *stack;
 
-	*stack = new_node;
+        if (*stack)
+                (*stack)->prev = new_node;
+
+        *stack = new_node;
 }
+else
+{
+        stack_t *temp;
 
+        new_node->next = NULL;
+
+        if (*stack == NULL)
+        {
+                new_node->prev = NULL;
+                *stack = new_node;
+        }
+        else
+        {
+                temp = *stack;
+
+                while (temp->next)
+                        temp = temp->next;
+
+                temp->next = new_node;
+                new_node->prev = temp;
+        }
+}
+}
 /**
  * pall - prints all stack values
  * @stack: stack

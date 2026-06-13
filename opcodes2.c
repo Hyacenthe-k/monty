@@ -331,3 +331,27 @@ void rotr(stack_t **stack, unsigned int line_number)
         (*stack)->prev = tail;
         *stack = tail;
 }
+
+/**
+ * stack_mode - sets stack mode
+ * @stack: stack
+ * @line_number: line number
+ */
+void stack_mode(stack_t **stack, unsigned int line_number)
+{
+        (void)stack;
+        (void)line_number;
+        mode = 0;
+}
+
+/**
+ * queue_mode - sets queue mode
+ * @stack: stack
+ * @line_number: line number
+ */
+void queue_mode(stack_t **stack, unsigned int line_number)
+{
+        (void)stack;
+        (void)line_number;
+        mode = 1;
+}
